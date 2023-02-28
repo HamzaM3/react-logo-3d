@@ -50,4 +50,4 @@ const main = async (container) => {
   animate(simulationData);
 };
 
-main(document.getElementById("container"));
+main(document.getElementById("big-logo-3d-container"));

@@ -586,7 +586,7 @@ const main = async (container)=>{
     simulationData.objects.torus3.rotateX(-getAngle(1800, 700));
     animate(simulationData);
 };
-main(document.getElementById("container"));
+main(document.getElementById("big-logo-3d-container"));
 
 },{"three":"ktPTu","./modules":"aOVNo"}],"ktPTu":[function(require,module,exports) {
 /**
