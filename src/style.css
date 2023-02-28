@@ -1,0 +1,24 @@
+body {
+  background: #000318;
+}
+
+#content {
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  position: relative;
+  padding: 170px 0 60px 0;
+}
+
+#container {
+  position: absolute;
+  width: 700px;
+  z-index: -1;
+  right: -240px;
+  top: -20px;
+}
+
+#container canvas {
+  width: 400px;
+  height: 400px;
+}

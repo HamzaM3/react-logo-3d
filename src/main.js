@@ -2,13 +2,6 @@ import * as THREE from "three";
 
 import { getSimulation } from "./modules";
 
-function onWindowResize({ camera, renderer }) {
-  camera.aspect = window.innerWidth / window.innerHeight;
-  camera.updateProjectionMatrix();
-
-  renderer.setSize(window.innerWidth, window.innerHeight);
-}
-
 const getAngle = (a, b) => {
   return Math.atan(Math.sqrt(a ** 2 / b ** 2 - 1));
 };
@@ -43,23 +36,16 @@ function render({
 const animate = (data) => {
   requestAnimationFrame(() => animate(data));
   render(data);
-  data.stats.update();
 };
 
 const main = async (container) => {
   const simulationData = await getSimulation();
 
   container.appendChild(simulationData.renderer.domElement);
-  container.appendChild(simulationData.stats.dom);
 
   simulationData.objects.torus1.rotateX(-getAngle(1800, 700));
   simulationData.objects.torus2.rotateX(getAngle(1800, 700));
   simulationData.objects.torus3.rotateX(-getAngle(1800, 700));
-
-  const axesHelper = new THREE.AxesHelper(100);
-  simulationData.scene.add(axesHelper);
-
-  window.addEventListener("resize", () => onWindowResize(simulationData));
 
   animate(simulationData);
 };

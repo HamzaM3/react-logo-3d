@@ -1,0 +1,26 @@
+body {
+  background: #000318;
+}
+
+#content {
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+  padding: 170px 0 60px;
+  position: relative;
+}
+
+#container {
+  width: 700px;
+  z-index: -1;
+  position: absolute;
+  top: -20px;
+  right: -240px;
+}
+
+#container canvas {
+  width: 400px;
+  height: 400px;
+}
+
+/*# sourceMappingURL=index.2cdaf7bc.css.map */
