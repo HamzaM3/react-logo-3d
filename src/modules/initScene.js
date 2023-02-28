@@ -7,12 +7,13 @@ export const initScene = () => {
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
   const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x000318);
 
   const camera = new THREE.OrthographicCamera(
-    window.innerWidth / -2,
-    window.innerWidth / 2,
-    window.innerHeight / 2,
-    window.innerHeight / -2,
+    window.innerWidth / -4,
+    window.innerWidth / 4,
+    window.innerHeight / 4,
+    window.innerHeight / -4,
     1,
     1000
   );

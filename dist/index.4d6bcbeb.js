@@ -567,7 +567,7 @@ function onWindowResize({ camera , renderer  }) {
 const getAngle = (a, b)=>{
     return Math.atan(Math.sqrt(a ** 2 / b ** 2 - 1));
 };
-function render({ renderer , scene , camera , objects: { torus1 , torus2 , torus3  }  }) {
+function render({ renderer , scene , camera , lights: { directionalLight  } , objects: { torus1 , torus2 , torus3  }  }) {
     const t = performance.now();
     torus1.rotateX(0.001 * Math.sin(0.002 * t));
     torus1.rotateY(0.0005 * Math.sin(0.001 * t + Math.PI / 3));
@@ -575,6 +575,8 @@ function render({ renderer , scene , camera , objects: { torus1 , torus2 , torus
     torus2.rotateY(-0.0005 * Math.sin(0.001 * t + Math.PI / 3));
     torus3.rotateX(0.001 * Math.sin(0.002 * t));
     torus3.rotateY(0.0005 * Math.sin(0.001 * t + Math.PI / 3));
+    directionalLight.position.set(3000 * Math.cos(0.001 * t) / Math.sqrt(4), 1000 * Math.cos(0.001 * t) / Math.sqrt(4), 1000 * Math.sin(0.001 * t));
+    directionalLight.lookAt(new _three.Vector3(0, 0, 0));
     renderer.render(scene, camera);
 }
 const animate = (data)=>{
@@ -587,7 +589,7 @@ const main = async (container)=>{
     container.appendChild(simulationData.renderer.domElement);
     container.appendChild(simulationData.stats.dom);
     simulationData.objects.torus1.rotateX(-getAngle(1800, 700));
-    simulationData.objects.torus2.rotateX(-getAngle(1800, 700));
+    simulationData.objects.torus2.rotateX(getAngle(1800, 700));
     simulationData.objects.torus3.rotateX(-getAngle(1800, 700));
     const axesHelper = new _three.AxesHelper(100);
     simulationData.scene.add(axesHelper);
@@ -30059,7 +30061,10 @@ const getSimulation = async ()=>{
     torus3.rotateZ(-Math.PI / 3);
     const ambientLight = new _three.AmbientLight(0xffffff, 0.5);
     scene.add(ambientLight);
-    // const directionalLight = new THREE.DirectionalLight();
+    const directionalLight = new _three.DirectionalLight(0xffffff, 0.5);
+    directionalLight.position.set(100, 100, 0);
+    directionalLight.lookAt(new _three.Vector3(0, 0, 0));
+    scene.add(directionalLight);
     const stats = new (0, _statsModuleJsDefault.default)();
     const { parameters , gui  } = (0, _gui.setGUI)();
     const simulationData = {
@@ -30067,6 +30072,10 @@ const getSimulation = async ()=>{
         scene,
         camera,
         stats,
+        lights: {
+            ambientLight,
+            directionalLight
+        },
         objects: {
             torus1,
             torus2,
@@ -30711,7 +30720,8 @@ const initScene = ()=>{
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.toneMapping = _three.ACESFilmicToneMapping;
     const scene = new _three.Scene();
-    const camera = new _three.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 1000);
+    scene.background = new _three.Color(0x000318);
+    const camera = new _three.OrthographicCamera(window.innerWidth / -4, window.innerWidth / 4, window.innerHeight / 4, window.innerHeight / -4, 1, 1000);
     camera.position.set(0, 0, 200);
     camera.lookAt(new _three.Vector3(0, 0, 0));
     return {

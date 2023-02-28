@@ -32,7 +32,10 @@ export const getSimulation = async () => {
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
   scene.add(ambientLight);
 
-  // const directionalLight = new THREE.DirectionalLight();
+  const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+  directionalLight.position.set(100, 100, 0);
+  directionalLight.lookAt(new THREE.Vector3(0, 0, 0));
+  scene.add(directionalLight);
 
   const stats = new Stats();
 
@@ -43,6 +46,7 @@ export const getSimulation = async () => {
     scene,
     camera,
     stats,
+    lights: { ambientLight, directionalLight },
     objects: { torus1, torus2, torus3, ball },
     parameters,
     gui,
