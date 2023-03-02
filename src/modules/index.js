@@ -5,8 +5,8 @@ import { getBall, getTorus } from "./objects";
 
 // 1800 / 700
 
-export const getSimulation = async () => {
-  const { renderer, scene, camera } = initScene();
+export const getSimulation = async (size) => {
+  const { renderer, scene, camera } = initScene(size);
 
   const ball = getBall((360 * 350) / 1800);
   const torus1 = getTorus(350, (90 * 350) / 1800);

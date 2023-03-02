@@ -38,8 +38,8 @@ const animate = (data) => {
   render(data);
 };
 
-const main = async (container) => {
-  const simulationData = await getSimulation();
+const main = async (container, size) => {
+  const simulationData = await getSimulation(size);
 
   container.appendChild(simulationData.renderer.domElement);
 
@@ -50,4 +50,5 @@ const main = async (container) => {
   animate(simulationData);
 };
 
-main(document.getElementById("big-logo-3d-container"));
+main(document.getElementById("big-logo-3d-container"), 400);
+main(document.getElementById("small-logo-3d-container"), 100);

@@ -10,7 +10,7 @@ body {
   padding: 170px 0 60px 0;
 }
 
-#container {
+#big-logo-3d-container {
   position: absolute;
   width: 700px;
   z-index: -1;
@@ -18,7 +18,8 @@ body {
   top: -20px;
 }
 
-#container canvas {
-  width: 400px;
-  height: 400px;
+#small-logo-3d-container canvas {
+  position: absolute;
+  width: 100px;
+  z-index: -1;
 }

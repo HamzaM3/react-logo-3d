@@ -578,15 +578,16 @@ const animate = (data)=>{
     requestAnimationFrame(()=>animate(data));
     render(data);
 };
-const main = async (container)=>{
-    const simulationData = await (0, _modules.getSimulation)();
+const main = async (container, size)=>{
+    const simulationData = await (0, _modules.getSimulation)(size);
     container.appendChild(simulationData.renderer.domElement);
     simulationData.objects.torus1.rotateX(-getAngle(1800, 700));
     simulationData.objects.torus2.rotateX(getAngle(1800, 700));
     simulationData.objects.torus3.rotateX(-getAngle(1800, 700));
     animate(simulationData);
 };
-main(document.getElementById("big-logo-3d-container"));
+main(document.getElementById("big-logo-3d-container"), 400);
+main(document.getElementById("small-logo-3d-container"), 100);
 
 },{"three":"ktPTu","./modules":"aOVNo"}],"ktPTu":[function(require,module,exports) {
 /**
@@ -30028,8 +30029,8 @@ parcelHelpers.export(exports, "getSimulation", ()=>getSimulation);
 var _three = require("three");
 var _initScene = require("./initScene");
 var _objects = require("./objects");
-const getSimulation = async ()=>{
-    const { renderer , scene , camera  } = (0, _initScene.initScene)();
+const getSimulation = async (size)=>{
+    const { renderer , scene , camera  } = (0, _initScene.initScene)(size);
     const ball = (0, _objects.getBall)(70);
     const torus1 = (0, _objects.getTorus)(350, 17.5);
     const torus2 = (0, _objects.getTorus)(350, 17.5);
@@ -30073,10 +30074,11 @@ var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "initScene", ()=>initScene);
 var _three = require("three");
-const initScene = ()=>{
+const initScene = (size)=>{
+    console.log(size);
     const renderer = new _three.WebGLRenderer();
     renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.setSize(400, 400);
+    renderer.setSize(size, size);
     renderer.toneMapping = _three.ACESFilmicToneMapping;
     const scene = new _three.Scene();
     scene.background = new _three.Color(0x000318);

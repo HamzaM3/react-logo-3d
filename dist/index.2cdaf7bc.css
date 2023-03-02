@@ -10,7 +10,7 @@ body {
   position: relative;
 }
 
-#container {
+#big-logo-3d-container {
   width: 700px;
   z-index: -1;
   position: absolute;
@@ -18,9 +18,10 @@ body {
   right: -240px;
 }
 
-#container canvas {
-  width: 400px;
-  height: 400px;
+#small-logo-3d-container canvas {
+  width: 100px;
+  z-index: -1;
+  position: absolute;
 }
 
 /*# sourceMappingURL=index.2cdaf7bc.css.map */

@@ -1,9 +1,10 @@
 import * as THREE from "three";
 
-export const initScene = () => {
+export const initScene = (size) => {
+  console.log(size);
   const renderer = new THREE.WebGLRenderer();
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(400, 400);
+  renderer.setSize(size, size);
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
 
   const scene = new THREE.Scene();
